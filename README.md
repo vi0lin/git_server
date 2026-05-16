@@ -20,3 +20,14 @@ git clone https://github.com/vi0lin/git_server.git
 ```bash
 git clone http://localhost:3000/my_repo.git
 ```
+
+# Adding Repositories
+```bash
+  cd ~/git_repos/
+  mkdir example.git && cd example.git
+  git init --bare
+  git branch -m main
+  git config --file config http.receivepack true
+  git symbolic-ref HEAD refs/heads/main
+```
+
