@@ -2,9 +2,9 @@
 
 # Installation
 ```bash
-git clone https://github.com/vi0lin/git-server.git
+git clone https://github.com/vi0lin/git_server.git
 (
-  cd git-server && source build.sh
+  cd git_server && source build.sh
   port=3000
   example=~/git_repos/my_repo.git
   repos=~/git_repos/
