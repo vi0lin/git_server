@@ -39,7 +39,6 @@ git clone http://localhost:3000/my_repo.git
 cd ~/git_repos/
 mkdir example.git && cd example.git
 git init --bare
-git branch -m main
 git config --file config http.receivepack true
 git symbolic-ref HEAD refs/heads/main
 ```
