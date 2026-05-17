@@ -15,6 +15,7 @@ repos=~/git_repos/
 create_dir $repos
 create_repo $example
 create_service_file $port $repos
+install_service
 build_git_server
 run_git_server $port $repos
 ```
@@ -43,3 +44,11 @@ git config --file config http.receivepack true
 git symbolic-ref HEAD refs/heads/main
 ```
 
+# Setup Service
+```bash
+  sudo chmod u+x ./git_server.service
+  ln -s -t /etc/systemd/system git_server.service
+  systemctl daemon-reload
+  systemctl enable git_server
+  systemctl start git_server
+```

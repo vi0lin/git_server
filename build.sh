@@ -28,9 +28,7 @@ create_service_file() {
   pwd=`pwd`
   port=$1
   repos=$2
-
-echo """
-[Unit]
+echo """[Unit]
 Description=Git-Server-Service
 
 [Service]
@@ -42,9 +40,14 @@ ExecReload=echo Reloaded
 
 [Install]
 WantedBy=default.target
-WantedBy=multi-user.target
-""" > ./git_server.service
+WantedBy=multi-user.target""" > ./git_server.service
+}
 
+install_service() {
+  sudo chmod u+x ./git_server.service
+  ln -s -t /etc/systemd/system git_server.service
+  systemctl enable git_server
+  systemctl start git_server
 }
 
 run_git_server() {
