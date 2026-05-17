@@ -46,11 +46,11 @@ git symbolic-ref HEAD refs/heads/main
 
 # Setup Service
 ```bash
-  source build.sh
-  create_service_file 3000 ~/git_repos
-  sudo chmod u+x ./git_server.service
-  ln -s -t /etc/systemd/system git_server.service
-  systemctl daemon-reload
-  systemctl enable git_server
-  systemctl start git_server
+source build.sh
+create_service_file 3000 ~/git_repos
+sudo chmod u+x ./git_server.service
+ln -s -t /etc/systemd/system git_server.service
+systemctl daemon-reload
+systemctl enable git_server
+systemctl start git_server
 ```
