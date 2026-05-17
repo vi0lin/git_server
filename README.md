@@ -11,7 +11,7 @@ cd git_server
 source build.sh
 port=3000
 example=~/git_repos/my_repo.git
-repos=~/git_repos/
+repos=~/git_repos
 create_dir $repos
 create_repo $example
 create_service_file $port $repos
@@ -27,7 +27,7 @@ gcc git_http_server.c -o bin/git_http_server
 
 # Run 
 ```bash
-./bin/git_http_server 3000 ~/git_repos/
+./bin/git_http_server 3000 ~/git_repos
 ```
 
 # Usage
@@ -37,7 +37,7 @@ git clone http://localhost:3000/my_repo.git
 
 # Adding Repositories
 ```bash
-cd ~/git_repos/
+cd ~/git_repos
 mkdir example.git && cd example.git
 git init --bare
 git config --file config http.receivepack true
@@ -46,6 +46,8 @@ git symbolic-ref HEAD refs/heads/main
 
 # Setup Service
 ```bash
+  source build.sh
+  create_service_file 3000 ~/git_repos
   sudo chmod u+x ./git_server.service
   ln -s -t /etc/systemd/system git_server.service
   systemctl daemon-reload
