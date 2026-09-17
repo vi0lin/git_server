@@ -4,8 +4,8 @@ example=$2
 repos=`echo $example | sed -E -n 's|(.*)/.*$|\1|p'`
 
 create_dir() {
-  if [ -d $1 ]; then
-    mkdir -p $1
+  if [ ! -d "$1" ]; then
+    mkdir -p "$1"
   fi;
 }
 
@@ -21,7 +21,8 @@ create_repo() {
 }
 
 build_git_server() {
-  gcc git_http_server.c -o bin/git_http_server
+  mkdir -p bin
+  gcc -O2 -Wall -Wextra git_http_server.c -o bin/git_http_server
 }
 
 create_service_file() {
@@ -46,6 +47,7 @@ WantedBy=multi-user.target""" > ./git_server.service
 install_service() {
   sudo chmod u+x ./git_server.service
   ln -s -t /etc/systemd/system git_server.service
+  systemctl daemon-reload
   systemctl enable git_server
   systemctl start git_server
 }
